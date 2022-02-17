@@ -1,12 +1,13 @@
-// jQuery(document).ready(function($) {
-//         jQuery('#q_data').DataTable ({
-//               "bLengthChange": false,
-//               "bAutoWidth" : true,
-// 		      "bProcessing": true,
-// 			  "bServerSide": false,
-// 			url : datatablesajax.ajaxurl
-//             });
-//     });
+jQuery(document).ready(function($) {
+    $('.ba-slider').beforeAfter();
+        // jQuery('#q_data').DataTable ({
+        //       "bLengthChange": false,
+        //       "bAutoWidth" : true,
+		//       "bProcessing": true,
+		// 	  "bServerSide": false,
+		// 	url : datatablesajax.ajaxurl
+        //     });
+    });
 
 
 function myFunction(imgs) {
@@ -25,7 +26,8 @@ function myFunction(imgs) {
     // if ( letter_index ) {
         compare.src = imgs.after_img
         container.style.display = "block"
-        initComparisons()
+
+        // initComparisons()
     // }
 }
 
