@@ -4,18 +4,23 @@ function before_afters() {
     if( isset($_GET['page']) || isset($_GET['page']) == "ba_options"  ) {
         return;
     }
+    ob_start();
 ?>
-    <div class="wrap">
-       <div class="container">
+
+    <div class="">
+
            <div class="row">
-               <div class="col-12 col-md-3 col-lg-3">
-                   <img src="http://beforeafter.local/wp-content/uploads/2022/02/Badge_2.png" width="100" />
+               <div class="">
+                   <img class="sample" src="http://beforeafter.local/wp-content/uploads/2022/02/Badge_2.png"  />
+               </div>
+
+               <div class="">
+                   <img src="http://beforeafter.local/wp-content/uploads/2022/02/Badge_2.png"  />
                </div>
            </div>
-       </div>
+
     </div>
 
-
 <?php
+    return ob_get_clean();
 }
-
