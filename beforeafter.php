@@ -31,8 +31,8 @@ include ( 'includes/shortcode/display-shortcode.php' );
 
 // HOOKS
 register_activation_hook( __FILE__, 'ba_activate_plugin' );
-add_action( 'admin_menu', 'ba_admin_menus' );
 add_action( 'admin_init', 'ba_admin_init' );
+add_action( 'admin_menu', 'ba_admin_menus' );
 
 // Shortcodes
 add_shortcode( 'disp_before_after', 'display_shortcode_before_after' );
