@@ -1,13 +1,18 @@
 <?php
 
-function before_afters() {
+function before_afters( $atts ) {
     if( isset($_GET['page']) || isset($_GET['page']) == "ba_options" ) {
         return;
     }
     ob_start();
+    if ( sizeof($atts) == 1 && implode("|", $atts )  !== 'all' ) {
+        $limit = implode("|", $atts );
+    } else {
+        $limit = 50;
+    }
 
     global $wpdb;
-    $ba_image_links = $wpdb -> get_results( "SELECT * FROM `" . $wpdb->prefix . "before_after`" );
+    $ba_image_links = $wpdb -> get_results( "SELECT * FROM `" . $wpdb->prefix . "before_after`". " LIMIT " . $limit );
 ?>
     <div class="">
         <div class="row">
@@ -27,9 +32,9 @@ function before_afters() {
         </div>
 
         <div class="ba-slider">
-            <img id="main" alt="Main Image" />
+            <img id="main" />
             <div class="resize">
-                <img id="compare" alt="Compare Image" />
+                <img id="compare" />
             </div>
             <span class="handle"></span>
         </div>

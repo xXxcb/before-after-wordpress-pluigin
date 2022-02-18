@@ -4,11 +4,10 @@
 *    Plugin Name: Before|After
 *    Plugin URI: https://adretreaver.com/contact-us/
 *    Description: This plugin list images in a beautiful gallery and allows you to present a before and after slider.
-*    Version: 1.5
+*    Version: 1.6
 *    Author: Carlos Burke
 *    Author URI: https://adretreaver.com/
 *    Text Domain: beforeafter
-*    License: A "Slug" license name e.g. GPL2
 **/
 
 // Prevents hacker from accessing the plugin fole directly
