@@ -9,7 +9,6 @@ function before_afters() {
     global $wpdb;
     $ba_image_links = $wpdb -> get_results( "SELECT * FROM `" . $wpdb->prefix . "before_after`" );
 ?>
-
     <div class="">
         <div class="row">
             <?php
@@ -24,13 +23,12 @@ function before_afters() {
         </div>
 
         <div class="ba-slider">
-            <img id="main" >
+            <img id="main" alt="Main Image" />
             <div class="resize">
-                <img id="compare" >
+                <img id="compare" alt="Compare Image" />
             </div>
             <span class="handle"></span>
         </div>
-
     </div>
 
 <?php

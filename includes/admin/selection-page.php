@@ -2,13 +2,67 @@
 
 function ba_plugin_select_page() {
 
+    global $wpdb;
+
+// Save attachment to DB
+    if ( isset( $_POST['submit_image_selector'] ) && isset( $_POST['image_attachment_id_before'] ) && isset( $_POST['image_attachment_id_after'] ) ) {
+
+        if ( isset($_COOKIE['before']) && isset($_COOKIE['after']) ) {
+            $before = $_COOKIE['before'];
+            $after = $_COOKIE['after'];
+
+            $sql= 'INSERT INTO ' . $wpdb->prefix . "before_after" . ' (' ."before_img, ". "after_img". ') ' . 'VALUES ' . '(' . '"' .$before. '"' .', ' . '"'.$after.'"' . ')';
+
+            $db_query_insert = $wpdb->query( $sql );
+
+            if ( $db_query_insert === 1 ) {
+                echo '
+                <script type="text/javascript">
+                    const Toast = Swal.mixin({
+                          toast: true,
+                          position: "center-end",
+                          showConfirmButton: false,
+                          timer: 2000,
+                        })
+                        
+                        Toast.fire({
+                          icon: "success",
+                          title: "Before/After images added successfully."
+                        })
+                </script>
+            ';
+            } else {
+                $message = '<div class="alert alert-error" role="alert">DB error!</div>';
+            }
+
+            unset($_COOKIE['before']);
+            unset($_COOKIE['after']);
+
+        } else {
+            echo '
+            <script type="text/javascript">
+                const Toast = Swal.mixin({
+                      toast: true,
+                      position: "center-end",
+                      showConfirmButton: false,
+                      timer: 2000,
+                    })
+                    
+                    Toast.fire({
+                      icon: "warning",
+                      title: "Please select a before and after picture."
+                    })
+            </script>
+        ';
+        }
+    }
+
     wp_enqueue_media();
 ?>
 
     <div class="wrap">
         <h3 class=""><?php _e('Select a Pair of Images', 'ba'); ?></h3>
         <div class="container">
-            <?php $message = null; echo $message; ?>
             <form method='post'>
                 <div class="row">
     <!--                Before-->
@@ -19,7 +73,7 @@ function ba_plugin_select_page() {
                                     <div class='image-preview-wrapper'>
                                         <img id='image-preview_before' src='<?php echo wp_get_attachment_url( get_option( 'media_selector_attachment_id_before' ) );  ?>' height='100'>
                                     </div>
-                                    <input id="upload_image_button_before" type="button" class="button" value="<?php _e( 'Select an image' ); ?>" />
+                                    <input id="upload_image_button_before" type="button" class="button mt-2" value="<?php _e( 'Select an image' ); ?>" />
                                     <input type='hidden' name='image_attachment_id_before' id='image_attachment_id_before' value='<?php echo get_option( 'media_selector_attachment_id_before' ); ?>'>
                             </div>
                         </div>
@@ -33,7 +87,7 @@ function ba_plugin_select_page() {
                                     <div class='image-preview-wrapper'>
                                         <img id='image-preview_after' src='<?php echo wp_get_attachment_url( get_option( 'media_selector_attachment_id_after' ) ); ?>' height='100'>
                                     </div>
-                                    <input id="upload_image_button_after" type="button" class="button" value="<?php _e( 'Select an image' ); ?>" />
+                                    <input id="upload_image_button_after" type="button" class="button mt-2" value="<?php _e( 'Select an image' ); ?>" />
                                     <input type='hidden' name='image_attachment_id_after' id='image_attachment_id_after' value='<?php echo get_option( 'media_selector_attachment_id_after' ); ?>'>
 
                             </div>
@@ -56,8 +110,8 @@ function ba_plugin_select_page() {
 add_action( 'admin_footer', 'media_selector_print_scripts' );
 
 function media_selector_print_scripts() {
-
-    ?><script type='text/javascript'>
+    ?>
+    <script type='text/javascript'>
         jQuery( document ).ready( function( $ ) {
 
             // Uploading files
@@ -130,27 +184,9 @@ function media_selector_print_scripts() {
 
 }
 
-global $wpdb;
+function clearCookies() {
+   if ( !headers_sent() ) {
 
-// Save attachment to DB
-if ( isset( $_POST['submit_image_selector'] ) && isset( $_POST['image_attachment_id_before'] ) && isset( $_POST['image_attachment_id_after'] ) ) {
 
-    if ( isset($_COOKIE['before']) && isset($_COOKIE['after']) ) {
-        $before = $_COOKIE['before'];
-        $after = $_COOKIE['after'];
-
-        $sql= 'INSERT INTO ' . $wpdb->prefix . "before_after" . ' (' ."before_img, ". "after_img". ') ' . 'VALUES ' . '(' . '"' .$before. '"' .', ' . '"'.$after.'"' . ')';
-
-        $db_query_insert = $wpdb->query( $sql );
-
-        if ( $db_query_insert ) {
-            $message = '<div class="alert alert-success" role="alert">Data Added to DB Successfully!</div>';
-        } else {
-            $message = '<div class="alert alert-error" role="alert">DB error!</div>';
-        }
-        setcookie("before", "", time() - 3600);
-        setcookie("after", "", time() - 3600);
-    } else {
-        $message = '<div class="alert alert-error" role="alert">Please, select a before and after picture.</div>';
-    }
+   }
 }

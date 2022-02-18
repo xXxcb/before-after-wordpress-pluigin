@@ -1,25 +1,31 @@
 <?php
 
 function ba_plugin_opts_page() {
+    if ( isset($_COOKIE['before']) && isset($_COOKIE['after']) ) {
+        unset($_COOKIE['before']);
+        unset($_COOKIE['after']);
+    }
     if ( isset($_POST['delete']) ) {
         $id = $_POST['delete'];
         global $wpdb;
 
         $table = 'before_after';
         $wpdb->delete( $wpdb->prefix . $table, array( 'ID' => $id ) );
-        echo '<script type="text/javascript">
-                    const Toast = Swal.mixin({
-                          toast: true,
-                          position: "center-end",
-                          showConfirmButton: false,
-                          timer: 2000,
-                        })
-                        
-                        Toast.fire({
-                          icon: "success",
-                          title: "Signed in successfully"
-                        })
-              </script>';
+        echo '
+            <script type="text/javascript">
+                const Toast = Swal.mixin({
+                      toast: true,
+                      position: "center-end",
+                      showConfirmButton: false,
+                      timer: 2000,
+                    })
+                    
+                    Toast.fire({
+                      icon: "success",
+                      title: "Before/After pair deleted successfully."
+                    })
+            </script>
+        ';
     }
     global $wpdb;
     $ba_image_links = $wpdb -> get_results( "SELECT * FROM `" . $wpdb->prefix . "before_after`" );

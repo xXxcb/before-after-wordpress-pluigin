@@ -1,12 +1,12 @@
 <?php if ( !defined( 'ABSPATH' ) ) { die; } // Exit if accessed directly
 
 /**
-*    Plugin Name: BeforeAfter
-*    Plugin URI: http://URI_Of_Page_Describing_Plugin_and_Updates
-*    Description: A brief description of the Plugin.
-*    Version: 1.2
+*    Plugin Name: Before|After
+*    Plugin URI: https://adretreaver.com/contact-us/
+*    Description: This plugin list images in a beautiful gallery and allows you to present a before and after slider.
+*    Version: 1.5
 *    Author: Carlos Burke
-*    Author URI: http://URI_Of_The_Plugin_Author
+*    Author URI: https://adretreaver.com/
 *    Text Domain: beforeafter
 *    License: A "Slug" license name e.g. GPL2
 **/
