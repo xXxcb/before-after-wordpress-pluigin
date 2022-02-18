@@ -12,6 +12,10 @@ function before_afters() {
     <div class="">
         <div class="row">
             <?php
+                if (sizeof($ba_image_links) == 0) {
+                    echo '<p>No Before After images added to the gallery.</p>';
+                } else {
+
                 foreach ( $ba_image_links as $link ) {
             ?>
                 <div class="column">
@@ -30,7 +34,9 @@ function before_afters() {
             <span class="handle"></span>
         </div>
     </div>
-
+                    <?php
+                }
+                    ?>
 <?php
     return ob_get_clean();
 }

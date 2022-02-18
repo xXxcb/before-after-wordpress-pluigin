@@ -35,9 +35,12 @@ function ba_plugin_opts_page() {
                 <div class="row">
                     <div class="col-12 col-md-12">
                         <div class="card shadow mr-6" style="max-width: inherit;">
-                            <h3 class="card-title border-bottom"><?php _e('List of Image Links', 'ba'); ?></h3>
+                            <h3 class="card-title border-bottom"><?php _e('List of Before|After Images', 'ba'); ?></h3>
                             <div class="card-body" style="max-height: 1200px !important; overflow-x: scroll !important;">
                                 <?php
+                                    if (!sizeof($ba_image_links)) {
+                                        echo '<div class="row d-flex justify-content-center"> <p class="lead">No <strong>Before|After</strong> images stored.</p></div>';
+                                    }
                                     foreach ( $ba_image_links as $link ) {
                                 ?>
                                     <div class="card" style="max-width: inherit;">
