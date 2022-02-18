@@ -1,4 +1,9 @@
 <?php
+    if (!is_admin()) {
+        wp_deregister_script( 'jquery' );
+        wp_register_script( 'jquery', '/wp-includes/js/jquery/jquery.js', FALSE, '3.6.0', TRUE );
+        wp_enqueue_script('jquery' );
+    }
 
 function before_afters( $atts ) {
     if( isset($_GET['page']) || isset($_GET['page']) == "ba_options" ) {

@@ -5,11 +5,9 @@ jQuery(document).ready(function($) {
 function myFunction(imgs) {
     let main = document.getElementById("main");
     let compare = document.getElementById("compare");
-    let container = document.getElementById("container")
 
     main.src = imgs.before_img;
-    compare.src = imgs.after_img
-    container.style.display = "block"
+    compare.src = imgs.after_img;
 }
 
 ( function($) {
