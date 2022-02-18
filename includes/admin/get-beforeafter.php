@@ -37,9 +37,9 @@ function before_afters( $atts ) {
         </div>
 
         <div class="ba-slider">
-            <img id="main" />
+            <img id="compare" />
             <div class="resize">
-                <img id="compare" />
+                <img id="main" />
             </div>
             <span class="handle"></span>
         </div>
