@@ -1,7 +1,7 @@
 <?php
-    if (!is_admin()) {
+    if ( !is_admin() ) {
         wp_deregister_script( 'jquery' );
-        wp_register_script( 'jquery', '/wp-includes/js/jquery/jquery.js', FALSE, '3.6.0', TRUE );
+        wp_register_script( 'jquery', '/wp-includes/js/jquery/jquery.js', '3.6.0', TRUE );
         wp_enqueue_script('jquery' );
     }
 
@@ -44,9 +44,9 @@ function before_afters( $atts ) {
             <span class="handle"></span>
         </div>
     </div>
-                    <?php
+            <?php
                 }
-                    ?>
+            ?>
 <?php
     return ob_get_clean();
 }
